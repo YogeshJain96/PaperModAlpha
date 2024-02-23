@@ -8,46 +8,49 @@ PaperModAlpha is a [Hugo](https://gohugo.io/) theme based on theme [hugo-PaperMo
 
 - Support to float Table of Content box to right or left (it only shows on the side when minimum screen size is 1440px)
 
-```yaml
-params:
-  TocSide: 'right'  # or 'left'
-```
+  ```yaml
+  params:
+    TocSide: "right" # or 'left'
+  ```
 
 - Option to disable social icons in home info section
 
-```yaml
-params:
-  homeInfoParams:
-    showSocialIcons: false  # or 'true'
-```
+  ```yaml
+  params:
+    homeInfoParams:
+      showSocialIcons: false # or 'true'
+  ```
+
 - Option to show list of dynamic tags/ topics in home info section
 
-```yaml
-params:
-  homeInfoParams:
+  ```yaml
+  params:
+    homeInfoParams:
       showTags: true # or 'false'
       tagsTitle: | # Optional, show any custom title if showTags is set to true
-         example: `You can find blogs about:`
-```
+        example: `You can find blogs about:`
+  ```
 
 - Option to add animated wave icon in home info section title
+  <img src="images/wave.svg" alt="wave">
 
-```yaml
-params:
-  homeInfoParams:
+  ```yaml
+  params:
+    homeInfoParams:
       showWaveIcon: true # or 'false'
-```
+  ```
 
 - Option to show terminal window in home info section with support for custom query and response
-
-```yaml
-params:
-  homeInfoParams:
+  
+  ```yaml
+  params:
+    homeInfoParams:
       showTerminalWindow: true # or 'false'
       terminalQuery: whoami # require showTerminalWindow to true
       terminalResponse: | # require showTerminalWindow to true
-         Hello, I'm Yogesh. A Curious, Full Stack Developer!
-```
+        Curious, Full Stack Developer
+  ```
+  <img src="images/terminal.svg" height=300 width=500 alt="terminal">
 
 ---
 
@@ -117,16 +120,33 @@ After you have created a new site, follow the below steps to add **PaperModAlpha
 
 #### Finally set theme as PaperModAlpha in your site config
 
-In `config.yml` add:
+In `hugo.yaml` add:
 
-```yml {linenos=true}
+```yaml
 theme: ["PaperModAlpha"]
 ```
 
-#### Next up - Customizing PaperMod to suit your preferences.
+#### Next - Customizing PaperModAlpha to suit your preferences
 
 As PaperModAlpha is a custom version of PaperMod theme, existing doc version is still valid.
 Documentation of PaperMod theme can be found here: [**📚 Wiki**](https://github.com/adityatelange/hugo-PaperMod/wiki)
+
+Aditionally, following configs are also supported
+
+```yaml
+# theme: ["PaperModAlpha"]
+params:
+  TocSide: 'right'  # or 'left'
+  homeInfoParams:
+    showSocialIcons: false  # or 'true'
+      showTags: true # or 'false'
+      tagsTitle: | # Optional, show any custom title if showTags is set to true
+        example: `You can find blogs about:`
+      showWaveIcon: true # or 'false'
+      showTerminalWindow: true # or 'false'
+      terminalQuery: whoami # require showTerminalWindow to true
+      terminalResponse: | # require showTerminalWindow to true
+```
 
 ## [Pagespeed Insights](https://pagespeed.web.dev/report?url=https://curiousone.in) 👀
 
@@ -134,7 +154,7 @@ Documentation of PaperMod theme can be found here: [**📚 Wiki**](https://githu
 
 ### Support 🫶
 
--   Star 🌟 this repository.
--   Help spread the word about PaperModAlpha by sharing it on social media and recommending it to your friends. 🗣️
+- Star 🌟 this repository.
+- Help spread the word about PaperModAlpha by sharing it on social media and recommending it to your friends.
 
 ---

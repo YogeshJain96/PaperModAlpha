@@ -1,0 +1,131 @@
+.terminal {
+  font-family: "Source Code Pro", Monaco, "Courier New", monospace;
+  font-weight: 400;
+  line-height: 1.5rem;
+  position: relative;
+  color: var(--entry);
+  margin: 1rem 0 0.5rem 0;
+}
+
+@media screen and (min-width: 30rem) {
+  .terminal {
+    line-height: 2rem;
+  }
+}
+
+@media screen and (min-width: 60.5rem) {
+  .terminal {
+    max-width: 60.5rem;
+  }
+}
+
+.terminal-task-bar {
+  height: 2rem;
+  padding-left: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  background-color: var(--secondary);
+}
+
+@media screen and (max-width: 30rem) {
+  .terminal-task-bar {
+    padding-top: 0.5rem;
+  }
+}
+
+.terminal-window {
+  padding: 1.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  background-color: var(--primary);
+  box-shadow: var(--content) 0px 2px 8px;
+}
+
+.terminal-circle {
+  position: relative;
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-right: -0.1875rem;
+  border-radius: 50%;
+}
+
+.terminal-circle-red {
+  background-color: #fb574e;
+}
+
+.terminal-circle-yellow {
+  background-color: #fbbd2e;
+}
+
+.terminal-circle-green {
+  background-color: #51e05d;
+}
+
+.terminal-prompt-response {
+  opacity: 0;
+}
+
+.terminal-prompt-response {
+  animation: show-response 10s infinite;
+}
+
+.terminal-prompt-typing {
+  position: relative;
+}
+
+.terminal-link {
+  color: var(--entry);
+  text-decoration: underline;
+}
+
+.terminal-prompt-typing .cover {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  display: inline-block;
+  box-sizing: border-box;
+  height: 100%;
+  background: var(--primary);
+  border-left: 1px solid var(--entry);
+}
+
+.terminal-prompt-typing .cover-query {
+  animation: typing-query 10s steps(19, end) infinite;
+}
+
+@keyframes typing-query {
+  0% {
+    width: 100%;
+    opacity: 1;
+  }
+
+  12% {
+    width: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  16% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes show-response {
+  0%,
+  20% {
+    opacity: 0;
+  }
+
+  100%,
+  25% {
+    opacity: 1;
+  }
+}
