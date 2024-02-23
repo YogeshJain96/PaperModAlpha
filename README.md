@@ -13,6 +13,31 @@ params:
   TocSide: 'right'  # or 'left'
 ```
 
+- Option to disable social icons in home info section
+
+```yaml
+params:
+  homeInfoParams:
+    showSocialIcons: false  # or 'true'
+```
+- Option to show list of dynamic tags/ topics in home info section
+
+```yaml
+params:
+  homeInfoParams:
+      showTags: true # or 'false'
+      tagsTitle: | # Optional, show any custom title if showTags is set to true
+         example: `You can find blogs about:`
+```
+
+- Option to add animated wave icon in home info section title
+
+```yaml
+params:
+  homeInfoParams:
+      showWaveIcon: true # or 'false'
+```
+
 ---
 
 ### Getting Started 🚀

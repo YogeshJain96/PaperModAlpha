@@ -1,13 +1,27 @@
 {{- with site.Params.homeInfoParams }}
 <article class="first-entry home-info">
     <header class="entry-header">
-        <h1>{{ .Title | markdownify }}</h1>
+        <h1>{{- if .showWaveIcon -}}<span class="wave">👋</span>&nbsp;{{- end -}} {{ .Title | markdownify }}</h1>
     </header>
     <div class="entry-content">
         {{ .Content | markdownify }}
+        {{- if .showTags -}}
+        {{ .tagsTitle | markdownify }}
+        <div class="post-tags">
+            {{range $name, $taxonomy := site.Taxonomies.tags}} {{ $cnt := .Count }}
+                {{ with $.Site.GetPage (printf "/tags/%s" $name) }}
+                <div>
+                    <a href={{ .RelPermalink }} title="All blogs with tag {{$name}}">{{$name}}<sup>{{$cnt}}</sup></a>
+                </div>
+                {{end}}
+            {{end}}
+        </div>
+        {{- end -}}
     </div>
+    {{- if .showSocialIcons -}}
     <footer class="entry-footer">
         {{ partial "social_icons.html" (dict "align" site.Params.homeInfoParams.AlignSocialIconsTo) }}
     </footer>
+    {{- end -}}
 </article>
 {{- end -}}
