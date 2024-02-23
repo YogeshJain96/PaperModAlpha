@@ -260,6 +260,24 @@
     padding: 0.4em;
 }
 
+
+@media screen and (min-width: 1440px) {
+    .toc.side {
+        position: fixed;
+        top: 118px;
+        font-size: .8em;
+        z-index: 1;
+    }
+    .toc.side.left {
+        left: 1rem;
+        width: 280px;
+    }
+    .toc.side.right {
+        right: 1rem;
+        width: 280px;
+    }
+}
+
 .dark .toc {
     background: var(--entry);
 }
