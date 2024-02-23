@@ -1,15 +1,20 @@
 {{- if not (.Param "hideFooter") }}
+{{- with site.Params }}
 <footer class="footer">
+    <hr>
     {{- if site.Copyright }}
     <span>{{ site.Copyright | markdownify }}</span>
     {{- else }}
     <span>&copy; {{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Title }}</a></span>
     {{- end }}
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/yogeshjain96/PaperModAlpha/" rel="noopener" target="_blank">PaperModAlpha</a>
-    </span>
+    <div class="footer-right social-icons">
+        {{- range site.Params.socialIcons }}
+        <a href="{{ trim .url " " | safeURL }}" target="_blank" rel="noopener noreferrer me"
+            title="{{ (.title | default .name) | title }}">
+            {{ partial "svg.html" . }}
+        </a>
+        {{- end }}
+    </div>
 </footer>
 {{- end }}
 
@@ -132,4 +137,5 @@
         }
     });
 </script>
+{{- end }}
 {{- end }}
