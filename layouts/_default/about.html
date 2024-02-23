@@ -1,6 +1,4 @@
 {{- define "main" }}
-
-<article class="post-single">
   <header class="post-header">
     {{ partial "breadcrumbs.html" . }}
     <h1 class="post-title entry-hint-parent">
@@ -12,16 +10,64 @@
     </div>
     {{- end }}
   </header>
-
-    {{- if .Content }}
-    <div class="post-content">
-        {{- if not (.Param "disableAnchoredHeadings") }}
-        {{- partial "anchored_headings.html" .Content -}}
-        {{- else }}{{ .Content }}{{ end }}
+    <div class="post-content flex-container {{ with site.Params.about.imageUrl }} flex-container {{- end }}">
+    {{- if site.Params.about.imageUrl -}}
+    <div class="flex-image">
+        {{- $img := "" }}
+        {{- if not (urls.Parse site.Params.about.imageUrl).IsAbs }}
+            {{- $img = resources.Get site.Params.about.imageUrl }}
+        {{- end }}
+        {{- if $img }}
+            {{- $processableFormats := (slice "jpg" "jpeg" "png" "tif" "bmp" "gif") -}}
+            {{- if hugo.IsExtended -}}
+                {{- $processableFormats = $processableFormats | append "webp" -}}
+            {{- end -}}
+            {{- $prod := (hugo.IsProduction | or (eq site.Params.env "production")) }}
+            {{- if and (in $processableFormats $img.MediaType.SubType) (eq $prod true)}}
+                {{- if (not (and (not site.Params.about.imageHeight) (not site.Params.about.imageWidth))) }}
+                    {{- $img = $img.Resize (printf "%dx%d" site.Params.about.imageWidth site.Params.about.imageHeight) }}
+                {{- else if site.Params.about.imageHeight }}
+                    {{- $img = $img.Resize (printf "x%d" site.Params.about.imageHeight) }}
+                {{ else if site.Params.about.imageWidth }}
+                    {{- $img = $img.Resize (printf "%dx" site.Params.about.imageWidth) }}
+                {{ else }}
+                    {{- $img = $img.Resize "250x250" }}
+                {{- end }}
+            {{- end }}
+            <img class="about-img flex-child" draggable="false" src="{{ $img.Permalink }}" alt="{{ site.Params.about.imageTitle | default "profile image" }}" title="{{ site.Params.about.imageTitle }}"
+                height="{{ site.Params.about.imageHeight | default 250 }}" width="{{ site.Params.about.imageWidth | default 250 }}" />
+        {{- else }}
+        <img class="about-img" draggable="false" src="{{ site.Params.about.imageUrl | absURL }}" alt="{{ site.Params.about.imageTitle | default "profile image" }}" title="{{ site.Params.about.imageTitle }}"
+            height="{{ site.Params.about.imageHeight | default 250 }}" width="{{ site.Params.about.imageWidth | default 250 }}" />
+        {{- end }}
+        {{ with site.Params.about.imageCaption }}<p>{{ . | markdownify }}</p>{{- end }}
     </div>
     {{- end }}
+        
+    {{- if site.Params.about.aboutInfo }}
+    <div class="post-content {{ with site.Params.about.imageUrl }} flex-content {{- end }}">
+        {{- if not (.Param "disableAnchoredHeadings") }}
+        {{- partial "anchored_headings.html" site.Params.about.aboutInfo | markdownify -}}
+        {{- else }}{{ site.Params.about.aboutInfo | markdownify }}{{ end }}
+    </div>
+    {{- end }}
+    </div>
+
+    {{- if site.Params.about.contactInfo }}
+    <div class="post-content">
+        <h3 class="post-title entry-hint-parent">
+            Contact
+        </h3>
+        {{- if not (.Param "disableAnchoredHeadings") }}
+        {{- partial "anchored_headings.html" site.Params.about.contactInfo | markdownify -}}
+        {{- else }}{{ site.Params.about.contactInfo | markdownify }}{{ end }}
+    </div>
+    {{- end }}
+    {{- if site.Params.about.showSocialIcons }}
+    <br>
     <footer class="entry-footer">
         Connect with me via: {{ partial "social_icons.html" }}
-    </footer> 
-</article>
-{{- end }}{{/* end main */}}
+    </footer>
+    {{- end }}
+{{- end }}
+{{/* end main */}}
