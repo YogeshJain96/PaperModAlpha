@@ -18,6 +18,9 @@
 {{- end -}}
 " id="top">
     {{- partialCached "header.html" . .Page -}}
+    <div id="hbar-scroll-container">
+        <div id="hbar-scroll"></div>
+    </div>
     <main class="main">
         {{- block "main" . }}{{ end }}
     </main>

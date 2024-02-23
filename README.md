@@ -119,6 +119,8 @@ PaperModAlpha is a [Hugo](https://gohugo.io/) theme based on theme [hugo-PaperMo
   ---
   ```
 
+- Implemented a Sticky Horizontal Bar on the blog content page, positioned at the top during scrolling - This feature serves to visually represent the reader's progress, offering a dynamic indicator of how much content has been consumed
+
 ---
 
 ### Getting Started 🚀

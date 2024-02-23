@@ -61,5 +61,11 @@
   {{- partial "comments.html" . }}
   {{- end }}
 </article>
-
+<script>
+  let fullHeight = document.body.scrollHeight - window.innerHeight;
+  window.addEventListener("scroll", function () {
+      progress = (pageYOffset / fullHeight) * 100;
+      document.getElementById("hbar-scroll").style.width = `${progress}%`
+  });
+</script>
 {{- end }}{{/* end main */}}
