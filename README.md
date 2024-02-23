@@ -38,6 +38,17 @@ params:
       showWaveIcon: true # or 'false'
 ```
 
+- Option to show terminal window in home info section with support for custom query and response
+
+```yaml
+params:
+  homeInfoParams:
+      showTerminalWindow: true # or 'false'
+      terminalQuery: whoami # require showTerminalWindow to true
+      terminalResponse: | # require showTerminalWindow to true
+         Hello, I'm Yogesh. A Curious, Full Stack Developer!
+```
+
 ---
 
 ### Getting Started 🚀

@@ -3,6 +3,15 @@
     <header class="entry-header">
         <h1>{{- if .showWaveIcon -}}<span class="wave">👋</span>&nbsp;{{- end -}} {{ .Title | markdownify }}</h1>
     </header>
+    {{- if .showTerminalWindow -}}
+    <div class="terminal">
+        <div class="terminal-task-bar"> <span class="terminal-circle terminal-circle-red"></span> <span class="terminal-circle terminal-circle-yellow"></span> <span class="terminal-circle terminal-circle-green"></span></div>
+        <div class="terminal-window">
+          <p class="terminal-prompt">➜ <span class="terminal-prompt-typing"><span class="cover cover-query"></span>{{ .terminalQuery }}</span></p>
+          <p class="terminal-prompt terminal-prompt-response">{{ .terminalResponse }}</p>
+        </div>
+    </div>
+    {{- end -}}
     <div class="entry-content">
         {{ .Content | markdownify }}
         {{- if .showTags -}}
