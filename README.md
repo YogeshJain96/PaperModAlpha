@@ -41,7 +41,7 @@ PaperModAlpha is a [Hugo](https://gohugo.io/) theme based on theme [hugo-PaperMo
   ```
 
 - Option to show terminal window in home info section with support for custom query and response
-  
+
   ```yaml
   params:
     homeInfoParams:
@@ -50,7 +50,74 @@ PaperModAlpha is a [Hugo](https://gohugo.io/) theme based on theme [hugo-PaperMo
       terminalResponse: | # require showTerminalWindow to true
         Curious, Full Stack Developer
   ```
+
   <img src="images/terminal.svg" height=300 width=500 alt="terminal">
+
+- Option to configure about page via config yaml
+
+  ```yaml
+  params:
+    about:
+      aboutInfo: |
+        Hello, I’m Yogesh Jain 👋
+      imageUrl: "images/profile.png" # optional
+      imageTitle: Yogesh Jain # set's image title if imageUrl is set
+      imageWidth: 250 # set's image width if imageUrl is set
+      imageHeight: 250 # set's image width if imageUrl is set
+      imageCaption: "Captured by [NA](#)" # set's image caption if imageUrl is set
+      aboutInfo: |
+        Hello, I’m Yogesh Jain 👋
+      contactInfo: |
+        You can reach out to me via email `contactemail[at]gmail[dot]com`
+      showSocialIcons: true # or 'false'
+  ```
+
+  Configure the `layout` to `about` in markdown page
+
+  ```shell
+  ---
+  title: "About Me"
+  layout: "about"
+  summary: "about page"
+  ---
+  ```
+
+- Add support for timeline
+
+  ```yaml
+  params:
+    timeline:
+      - year: "2024"
+        events:
+          - |
+            ### Experience
+            Write Something!
+      - year: "2018"
+        events:
+          - |
+            #### Education
+            `tag1` `tag2` `tag3`
+            This is the first multi-line text entry.
+            It spans multiple lines and supports markdown
+
+            🔗[link-text](https://curiousone.in)
+          - |
+            #### Another Achivement
+            And here is the another entry with
+            additional lines.
+            - abc
+            - xyz
+  ```
+
+  Configure the `layout` to `timeline` in markdown page
+
+  ```shell
+  ---
+  title: "My Timeline"
+  layout: "timeline"
+  summary: "My timeline page"
+  ---
+  ```
 
 ---
 
@@ -144,8 +211,46 @@ params:
         example: `You can find blogs about:`
       showWaveIcon: true # or 'false'
       showTerminalWindow: true # or 'false'
-      terminalQuery: whoami # require showTerminalWindow to true
-      terminalResponse: | # require showTerminalWindow to true
+      terminalQuery: whoami # require showTerminalWindow to be true
+      terminalResponse: | # require showTerminalWindow to be true
+        Yogesh Jain
+  about:
+    aboutInfo: |
+      Hello, I’m Yogesh Jain 👋
+    imageUrl: "images/profile.png" # optional
+    imageTitle: Yogesh Jain # set's image title if imageUrl is set
+    imageWidth: 250 # set's image width if imageUrl is set
+    imageHeight: 250 # set's image width if imageUrl is set
+    imageCaption: "Captured by [NA](#)" # set's image caption if imageUrl is set
+    aboutInfo: |
+      Hello, I’m Yogesh Jain 👋
+    contactInfo: |
+      You can reach out to me via email `contactemail[at]gmail[dot]com`
+    showSocialIcons: true # or 'false'
+  timeline:
+      - year: "2021"
+        events:
+        - |
+          ### Experience
+          Write Something!
+      - year: "2022"
+        events:
+        - |
+          #### Achivement
+          `tag1` `tag2` `tag3`
+
+          This is the first multi-line text entry.
+          It spans multiple lines and supports markdown
+
+          🔗[link-text](https://curiousone.in)
+
+        - |
+          #### Another Achivement
+
+          And here is the another entry with
+          additional lines.
+          - abc
+          - xyz
 ```
 
 ## [Pagespeed Insights](https://pagespeed.web.dev/report?url=https://curiousone.in) 👀

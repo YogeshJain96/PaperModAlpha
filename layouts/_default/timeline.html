@@ -1,0 +1,31 @@
+{{- define "main" }}
+
+<article class="post-single">
+  <header class="post-header">
+    {{ partial "breadcrumbs.html" . }}
+    <h1 class="post-title entry-hint-parent">{{ .Title }}</h1>
+    {{- if .Description }}
+    <div class="post-description">{{ .Description }}</div>
+    {{- end }}
+  </header>
+  <div class="post-content">
+    {{- if .Content }} {{- if not (.Param "disableAnchoredHeadings") }} {{-
+    partial "anchored_headings.html" .Content -}} {{- else }}{{ .Content }}{{
+    end }} {{- end }}
+    <div class="timeline">
+      {{- range $index, $element := site.Params.timeline }}
+      {{ $autoAlign:= cond (eq (mod $index 2) 0) "right" "left" }}
+      <div class="timeline-text-wrapper timeline-{{ $autoAlign }}">
+        <h3>{{ $element.year }}</h3>
+        {{- range $element.events }}
+        <div class="timeline-content">
+          <p>
+            {{ . | markdownify }}
+          </p>
+        </div>
+        {{- end }}
+      </div>
+    {{- end }}
+  </div>
+</article>
+{{- end }}{{/* end main */}}
