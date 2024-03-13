@@ -6,7 +6,7 @@
 
 #hbar-scroll {
     width: 0%;
-    height: 4px;
+    height: 5px;
     background-color: var(--secondary);
     transition: all linear .1s;
     position: sticky;
