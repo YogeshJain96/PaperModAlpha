@@ -25,11 +25,15 @@
     color: inherit;
 }
 
-.footer-right{
+.footer-right {
     position: absolute;
     right: 1rem;
     top: 1.5rem;
-}
+    svg {
+      width: 20px !important;
+      height: 20px !important;
+    }
+  }
 
 .top-link {
     visibility: hidden;

@@ -4,7 +4,7 @@
 <div class="toc{{- if (.Param "TocSide") -}}{{- print " side " (.Param "TocSide") -}}{{- end -}}">
     <details {{if (.Param "TocOpen") }} open{{ end }}>
         <summary accesskey="c" title="(Alt + C)">
-            <span class="details">{{- i18n "toc" | default "Table of Contents" }}</span>
+            <span class="details">{{- i18n "toc" | default "On this page" }}</span>
         </summary>
 
         <div class="inner">

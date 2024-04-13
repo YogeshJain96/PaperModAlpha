@@ -6,8 +6,8 @@
 
 - id: read_time
   translation:
-    one : "1 min"
-    other: "{{ .Count }} min"
+    one : "1 min read"
+    other: "{{ .Count }} min read"
 
 - id: words
   translation:
@@ -15,7 +15,7 @@
     other: "{{ .Count }} words"
 
 - id: toc
-  translation: "Table of Contents"
+  translation: "On this page"
 
 - id: translations
   translation: "Translations"
