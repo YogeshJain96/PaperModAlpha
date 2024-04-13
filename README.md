@@ -121,6 +121,20 @@ PaperModAlpha is a [Hugo](https://gohugo.io/) theme based on theme [hugo-PaperMo
 
 - Implemented a Sticky Horizontal Bar on the blog content page, positioned at the top during scrolling - This feature serves to visually represent the reader's progress, offering a dynamic indicator of how much content has been consumed
 
+- Add support for automatic switching of image sources between light and dark modes by adding a class `toggleDarkMode` to image tags. JavaScript will append the `-dark` suffix to the image filename for dark mode and remove it for light mode. Ensure that dark mode images are named with the -dark suffix in the source path
+
+  Example:
+
+  ```html
+  <!-- Light mode -->
+  <img class="toggleDarkMode" src="my-image-path.jpg"/>
+  ```
+
+  ```html
+  <!-- Dark mode -->
+  <!-- Suffixed '-dark' to image name -->
+  <img class="toggleDarkMode" src="my-image-path-dark.jpg"/>
+  ```
 ---
 
 ### Getting Started 🚀
