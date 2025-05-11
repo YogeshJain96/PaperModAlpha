@@ -38,7 +38,7 @@ features = [
   "scroll-to-top",
   "enhanced-user-experience"
 ]
-min_version = "0.112.4"
+min_version = "0.146.0"
 
 [author]
   name = "Yogesh Jain"
