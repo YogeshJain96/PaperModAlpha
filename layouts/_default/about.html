@@ -52,7 +52,13 @@
     </div>
     {{- end }}
     </div>
-
+    {{- if site.Params.about.aboutInfoMore }}
+    <div class="post-content">
+        {{- if not (.Param "disableAnchoredHeadings") }}
+        {{- partial "anchored_headings.html" site.Params.about.aboutInfoMore | markdownify -}}
+        {{- else }}{{ site.Params.about.aboutInfoMore | markdownify }}{{ end }}
+    </div>
+    {{- end }}
     {{- if site.Params.about.contactInfo }}
     <div class="post-content">
         <h3 class="post-title entry-hint-parent">
