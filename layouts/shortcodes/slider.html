@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+    {{ range split .Inner "\n" }}
+       {{- $line := . | replaceRE "^[\\s\\r\\n]+" "" | replaceRE "[\\s\\r\\n]+$" "" }}
+        {{- if ne $line "" }}
+        <div class="swiper-slide">
+          <img src="{{ $line }}" alt="Slide Image" style="width:100%; border-radius: 8px;" />
+        </div>
+      {{- end }}
+    {{ end }}
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  new Swiper(".mySwiper", {
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+  });
+</script>
