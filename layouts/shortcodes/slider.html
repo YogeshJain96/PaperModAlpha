@@ -1,26 +1,50 @@
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<style>
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #000;
+  }
+  .caption {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #555;
+  }
+</style>
 
 <div class="swiper mySwiper">
   <div class="swiper-wrapper">
     {{ range split .Inner "\n" }}
-       {{- $line := . | replaceRE "^[\\s\\r\\n]+" "" | replaceRE "[\\s\\r\\n]+$" "" }}
-        {{- if ne $line "" }}
+      {{- $line := . | replaceRE "^[\\s\\r\\n]+" "" | replaceRE "[\\s\\r\\n]+$" "" }}
+      {{- if ne $line "" }}
+        {{- $parts := split $line "|" }}
+        {{- $src := index $parts 0}}
+        {{- $caption := cond (gt (len $parts) 1) (index $parts 1) "" }}
         <div class="swiper-slide">
-          <img src="{{ $line }}" alt="Slide Image" style="width:100%; border-radius: 8px;" />
+          <img src="{{ $src }}" alt="{{ $caption }}" title="{{ $caption }}" />
+          {{- if ne $caption "" }}
+            <div class="caption">{{ $caption }}</div>
+          {{- end }}
         </div>
       {{- end }}
     {{ end }}
   </div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
   <div class="swiper-pagination"></div>
 </div>
 
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+{{- $swiper_js := resources.Get "js/swiper-bundle.min.js" | fingerprint}}
+<script src="{{ $swiper_js.RelPermalink }}"></script>
+
 <script>
   new Swiper(".mySwiper", {
     loop: true,
     pagination: {
       el: ".swiper-pagination",
       clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
     },
     autoplay: {
       delay: 3000,
