@@ -1,26 +1,62 @@
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<style>
+  .mySwiper {
+    width: 100%;
+    height: 600px;
+    @media (max-width: 768px) {
+      height: 50%;
+    }
+  }
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #000;
+    text-shadow: 2px 2px 4px white;
+  }
+  .swiper-slide img {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    margin: auto;
+  }
+  .caption {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+</style>
 
 <div class="swiper mySwiper">
   <div class="swiper-wrapper">
-    {{ range split .Inner "\n" }}
-       {{- $line := . | replaceRE "^[\\s\\r\\n]+" "" | replaceRE "[\\s\\r\\n]+$" "" }}
-        {{- if ne $line "" }}
-        <div class="swiper-slide">
-          <img src="{{ $line }}" alt="Slide Image" style="width:100%; border-radius: 8px;" />
-        </div>
+    {{ range split .Inner "\n" }} {{- $line := . | replaceRE "^[\\s\\r\\n]+" ""
+    | replaceRE "[\\s\\r\\n]+$" "" }} {{- if ne $line "" }} {{- $parts := split
+    $line "|" }} {{- $src := index $parts 0}} {{- $caption := cond (gt (len
+    $parts) 1) (index $parts 1) "" }}
+    <div class="swiper-slide">
+      <img src="{{ $src }}" alt="{{ $caption }}" title="{{ $caption }}" />
+      {{- if ne $caption "" }}
+      <div class="caption">{{ $caption }}</div>
       {{- end }}
-    {{ end }}
+    </div>
+    {{- end }} {{ end }}
   </div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
   <div class="swiper-pagination"></div>
 </div>
 
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+{{- $swiper_js := resources.Get "js/swiper-bundle.min.js" | fingerprint}}
+<script src="{{ $swiper_js.RelPermalink }}"></script>
+
 <script>
   new Swiper(".mySwiper", {
     loop: true,
     pagination: {
       el: ".swiper-pagination",
       clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
     },
     autoplay: {
       delay: 3000,

@@ -135,6 +135,21 @@ PaperModAlpha is a [Hugo](https://gohugo.io/) theme based on theme [hugo-PaperMo
   <!-- Suffixed '-dark' to image name -->
   <img class="toggleDarkMode" src="my-image-path-dark.jpg"/>
   ```
+
+- Add support for Image Slider using swiper.js
+
+  Example:
+
+  ```
+  {{< slider >}}
+  /images/your-image-dir/image-1.png|Image 1 Caption goes here
+  /images/your-image-dir/image-2.png|Image 2 Caption goes here
+  /images/your-image-dir/image-3.png|Image 3 Caption goes here
+  /images/your-image-dir/image-4.png|Image 4 Caption goes here
+  /images/your-image-dir/image-5.png|Image 5 Caption goes here
+  {{< /slider >}}
+  ```
+
 ---
 
 ### Getting Started 🚀
