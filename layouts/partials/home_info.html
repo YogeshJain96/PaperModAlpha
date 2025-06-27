@@ -1,4 +1,4 @@
-{{- with site.Params.homeInfoParams }}
+{{- with site.Data.home }}
 <article class="first-entry home-info">
     <header class="entry-header">
         <h1>{{- if .showWaveIcon -}}<span class="wave">👋</span>&nbsp;{{- end -}} {{ .Title | markdownify }}</h1>
@@ -29,7 +29,7 @@
     </div>
     {{- if .showSocialIcons -}}
     <footer class="entry-footer">
-        {{ partial "social_icons.html" (dict "align" site.Params.homeInfoParams.AlignSocialIconsTo) }}
+        {{ partial "social_icons.html" (dict "align" .AlignSocialIconsTo) }}
     </footer>
     {{- end -}}
 </article>

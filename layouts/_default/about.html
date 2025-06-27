@@ -1,4 +1,5 @@
 {{- define "main" }}
+{{- $about := site.Data.about }}
   <header class="post-header">
     {{ partial "breadcrumbs.html" . }}
     <h1 class="post-title entry-hint-parent">
@@ -10,12 +11,12 @@
     </div>
     {{- end }}
   </header>
-    <div class="post-content flex-container {{ with site.Params.about.imageUrl }} flex-container {{- end }}">
-    {{- if site.Params.about.imageUrl -}}
+    <div class="post-content flex-container {{ with $about.imageUrl }} flex-container {{- end }}">
+    {{- if $about.imageUrl -}}
     <div class="flex-image">
         {{- $img := "" }}
-        {{- if not (urls.Parse site.Params.about.imageUrl).IsAbs }}
-            {{- $img = resources.Get site.Params.about.imageUrl }}
+        {{- if not (urls.Parse $about.imageUrl).IsAbs }}
+            {{- $img = resources.Get $about.imageUrl }}
         {{- end }}
         {{- if $img }}
             {{- $processableFormats := (slice "jpg" "jpeg" "png" "tif" "bmp" "gif") -}}
@@ -24,52 +25,52 @@
             {{- end -}}
             {{- $prod := (hugo.IsProduction | or (eq site.Params.env "production")) }}
             {{- if and (in $processableFormats $img.MediaType.SubType) (eq $prod true)}}
-                {{- if (not (and (not site.Params.about.imageHeight) (not site.Params.about.imageWidth))) }}
-                    {{- $img = $img.Resize (printf "%dx%d" site.Params.about.imageWidth site.Params.about.imageHeight) }}
-                {{- else if site.Params.about.imageHeight }}
-                    {{- $img = $img.Resize (printf "x%d" site.Params.about.imageHeight) }}
-                {{ else if site.Params.about.imageWidth }}
-                    {{- $img = $img.Resize (printf "%dx" site.Params.about.imageWidth) }}
+                {{- if (not (and (not $about.imageHeight) (not $about.imageWidth))) }}
+                    {{- $img = $img.Resize (printf "%dx%d" $about.imageWidth $about.imageHeight) }}
+                {{- else if $about.imageHeight }}
+                    {{- $img = $img.Resize (printf "x%d" $about.imageHeight) }}
+                {{ else if $about.imageWidth }}
+                    {{- $img = $img.Resize (printf "%dx" $about.imageWidth) }}
                 {{ else }}
                     {{- $img = $img.Resize "250x250" }}
                 {{- end }}
             {{- end }}
-            <img class="about-img flex-child" draggable="false" src="{{ $img.Permalink }}" alt="{{ site.Params.about.imageTitle | default "profile image" }}" title="{{ site.Params.about.imageTitle }}"
-                height="{{ site.Params.about.imageHeight | default 250 }}" width="{{ site.Params.about.imageWidth | default 250 }}" />
+            <img class="about-img flex-child" draggable="false" src="{{ $img.Permalink }}" alt="{{ $about.imageTitle | default "profile image" }}" title="{{ $about.imageTitle }}"
+                height="{{ $about.imageHeight | default 250 }}" width="{{ $about.imageWidth | default 250 }}" />
         {{- else }}
-        <img class="about-img" draggable="false" src="{{ site.Params.about.imageUrl | absURL }}" alt="{{ site.Params.about.imageTitle | default "profile image" }}" title="{{ site.Params.about.imageTitle }}"
-            height="{{ site.Params.about.imageHeight | default 250 }}" width="{{ site.Params.about.imageWidth | default 250 }}" />
+        <img class="about-img" draggable="false" src="{{ $about.imageUrl | absURL }}" alt="{{ $about.imageTitle | default "profile image" }}" title="{{ $about.imageTitle }}"
+            height="{{ $about.imageHeight | default 250 }}" width="{{ $about.imageWidth | default 250 }}" />
         {{- end }}
-        {{ with site.Params.about.imageCaption }}<p>{{ . | markdownify }}</p>{{- end }}
+        {{ with $about.imageCaption }}<p>{{ . | markdownify }}</p>{{- end }}
     </div>
     {{- end }}
         
-    {{- if site.Params.about.aboutInfo }}
-    <div class="post-content {{ with site.Params.about.imageUrl }} flex-content {{- end }}">
+    {{- if $about.aboutInfo }}
+    <div class="post-content {{ with $about.imageUrl }} flex-content {{- end }}">
         {{- if not (.Param "disableAnchoredHeadings") }}
-        {{- partial "anchored_headings.html" site.Params.about.aboutInfo | markdownify -}}
-        {{- else }}{{ site.Params.about.aboutInfo | markdownify }}{{ end }}
+        {{- partial "anchored_headings.html" $about.aboutInfo | markdownify -}}
+        {{- else }}{{ $about.aboutInfo | markdownify }}{{ end }}
     </div>
     {{- end }}
     </div>
-    {{- if site.Params.about.aboutInfoMore }}
+    {{- if $about.aboutInfoMore }}
     <div class="post-content">
         {{- if not (.Param "disableAnchoredHeadings") }}
-        {{- partial "anchored_headings.html" site.Params.about.aboutInfoMore | markdownify -}}
-        {{- else }}{{ site.Params.about.aboutInfoMore | markdownify }}{{ end }}
+        {{- partial "anchored_headings.html" $about.aboutInfoMore | markdownify -}}
+        {{- else }}{{ $about.aboutInfoMore | markdownify }}{{ end }}
     </div>
     {{- end }}
-    {{- if site.Params.about.contactInfo }}
+    {{- if $about.contactInfo }}
     <div class="post-content">
         <h3 class="post-title entry-hint-parent">
             Contact
         </h3>
         {{- if not (.Param "disableAnchoredHeadings") }}
-        {{- partial "anchored_headings.html" site.Params.about.contactInfo | markdownify -}}
-        {{- else }}{{ site.Params.about.contactInfo | markdownify }}{{ end }}
+        {{- partial "anchored_headings.html" $about.contactInfo | markdownify -}}
+        {{- else }}{{ $about.contactInfo | markdownify }}{{ end }}
     </div>
     {{- end }}
-    {{- if site.Params.about.showSocialIcons }}
+    {{- if $about.showSocialIcons }}
     <br>
     <footer class="entry-footer">
         Connect with me via: {{ partial "social_icons.html" }}

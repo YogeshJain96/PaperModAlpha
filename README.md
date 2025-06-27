@@ -13,63 +13,55 @@ PaperModAlpha is a [Hugo](https://gohugo.io/) theme based on theme [hugo-PaperMo
     TocSide: "right" # or 'left'
   ```
 
-- Option to disable social icons in home info section
+- Option to disable social icons in `home.yaml` in `data` dir
 
   ```yaml
-  params:
-    homeInfoParams:
-      showSocialIcons: false # or 'true'
+  showSocialIcons: false # or 'true'
   ```
 
-- Option to show list of dynamic tags/ topics in home info section
+- Option to show list of dynamic tags/ topics in `home.yaml` in `data` dir
 
   ```yaml
-  params:
-    homeInfoParams:
-      showTags: true # or 'false'
-      tagsTitle: | # Optional, show any custom title if showTags is set to true
-        example: `You can find blogs about:`
+  showTags: true # or 'false'
+  tagsTitle: | # Optional, show any custom title if showTags is set to true
+    example: `You can find blogs about:`
   ```
 
-- Option to add animated wave icon in home info section title
+- Option to add animated wave icon in `home.yaml` in `data` dir
   <img src="images/wave.svg" alt="wave">
 
   ```yaml
-  params:
-    homeInfoParams:
-      showWaveIcon: true # or 'false'
+  showWaveIcon: true # or 'false'
   ```
 
-- Option to show terminal window in home info section with support for custom query and response
+- Option to show terminal window in `home.yaml` in `data` dir with support for custom query and response
 
   ```yaml
-  params:
-    homeInfoParams:
-      showTerminalWindow: true # or 'false'
-      terminalQuery: whoami # require showTerminalWindow to true
-      terminalResponse: | # require showTerminalWindow to true
-        Curious, Full Stack Developer
+  showTerminalWindow: true # or 'false'
+  terminalQuery: whoami # require showTerminalWindow to true
+  terminalResponse: | # require showTerminalWindow to true
+    Curious, Full Stack Developer
   ```
 
   <img src="images/terminal.svg" height=300 width=500 alt="terminal">
 
-- Option to configure about page via config yaml
+- Option to configure about page via `about.yaml` in `data` dir
 
   ```yaml
-  params:
-    about:
-      aboutInfo: |
-        Hello, I’m Yogesh Jain 👋
-      imageUrl: "images/profile.png" # optional
-      imageTitle: Yogesh Jain # set's image title if imageUrl is set
-      imageWidth: 250 # set's image width if imageUrl is set
-      imageHeight: 250 # set's image width if imageUrl is set
-      imageCaption: "Captured by [NA](#)" # set's image caption if imageUrl is set
-      aboutInfo: |
-        Hello, I’m Yogesh Jain 👋
-      contactInfo: |
-        You can reach out to me via email `contactemail[at]gmail[dot]com`
-      showSocialIcons: true # or 'false'
+  aboutInfo: |
+    Hello, I’m Yogesh Jain 👋
+  aboutInfoMore: |
+    Some more detailed descriotio here
+  imageUrl: "images/profile.png" # optional
+  imageTitle: Yogesh Jain # set's image title if imageUrl is set
+  imageWidth: 250 # set's image width if imageUrl is set
+  imageHeight: 250 # set's image width if imageUrl is set
+  imageCaption: "Captured by [NA](#)" # set's image caption if imageUrl is set
+  aboutInfo: |
+    Hello, I’m Yogesh Jain 👋
+  contactInfo: |
+    You can reach out to me via email `contactemail[at]gmail[dot]com`
+  showSocialIcons: true # or 'false'
   ```
 
   Configure the `layout` to `about` in markdown page
@@ -85,28 +77,26 @@ PaperModAlpha is a [Hugo](https://gohugo.io/) theme based on theme [hugo-PaperMo
 - Add support for timeline
 
   ```yaml
-  params:
-    timeline:
-      - year: "2024"
-        events:
-          - |
-            ### Experience
-            Write Something!
-      - year: "2018"
-        events:
-          - |
-            #### Education
-            `tag1` `tag2` `tag3`
-            This is the first multi-line text entry.
-            It spans multiple lines and supports markdown
+  - year: "2024"
+    events:
+      - |
+        ### Experience
+        Write Something!
+  - year: "2018"
+    events:
+      - |
+        #### Education
+        `tag1` `tag2` `tag3`
+        This is the first multi-line text entry.
+        It spans multiple lines and supports markdown
 
-            🔗[link-text](https://curiousone.in)
-          - |
-            #### Another Achivement
-            And here is the another entry with
-            additional lines.
-            - abc
-            - xyz
+        🔗[link-text](https://curiousone.in)
+      - |
+        #### Another Achivement
+        And here is the another entry with
+        additional lines.
+        - abc
+        - xyz
   ```
 
   Configure the `layout` to `timeline` in markdown page
@@ -240,53 +230,65 @@ Aditionally, following configs are also supported
 # theme: ["PaperModAlpha"]
 params:
   TocSide: 'right'  # or 'left'
-  homeInfoParams:
-    showSocialIcons: false  # or 'true'
-      showTags: true # or 'false'
-      tagsTitle: | # Optional, show any custom title if showTags is set to true
-        example: `You can find blogs about:`
-      showWaveIcon: true # or 'false'
-      showTerminalWindow: true # or 'false'
-      terminalQuery: whoami # require showTerminalWindow to be true
-      terminalResponse: | # require showTerminalWindow to be true
-        Yogesh Jain
-  about:
-    aboutInfo: |
-      Hello, I’m Yogesh Jain 👋
-    imageUrl: "images/profile.png" # optional
-    imageTitle: Yogesh Jain # set's image title if imageUrl is set
-    imageWidth: 250 # set's image width if imageUrl is set
-    imageHeight: 250 # set's image width if imageUrl is set
-    imageCaption: "Captured by [NA](#)" # set's image caption if imageUrl is set
-    aboutInfo: |
-      Hello, I’m Yogesh Jain 👋
-    contactInfo: |
-      You can reach out to me via email `contactemail[at]gmail[dot]com`
-    showSocialIcons: true # or 'false'
-  timeline:
-      - year: "2021"
-        events:
-        - |
-          ### Experience
-          Write Something!
-      - year: "2022"
-        events:
-        - |
-          #### Achivement
-          `tag1` `tag2` `tag3`
+```
 
-          This is the first multi-line text entry.
-          It spans multiple lines and supports markdown
+Create `home.yaml` sample file in `data` dir
 
-          🔗[link-text](https://curiousone.in)
+```yaml
+showSocialIcons: false  # or 'true'
+showTags: true # or 'false'
+tagsTitle: | # Optional, show any custom title if showTags is set to true
+  example: `You can find blogs about:`
+showWaveIcon: true # or 'false'
+showTerminalWindow: true # or 'false'
+terminalQuery: whoami # require showTerminalWindow to be true
+terminalResponse: | # require showTerminalWindow to be true
+  Yogesh Jain
+```
 
-        - |
-          #### Another Achivement
+Create `about.yaml` sample file in `data` dir
+```yaml
+imageUrl: "images/profile.png" # optional
+imageTitle: Yogesh Jain # set's image title if imageUrl is set
+imageWidth: 250 # set's image width if imageUrl is set
+imageHeight: 250 # set's image width if imageUrl is set
+imageCaption: "Captured by [NA](#)" # set's image caption if imageUrl is set
+aboutInfo: |
+  Hello, I’m Yogesh Jain 👋
+  Some description here
+aboutInfoMore: |
+  Some more detailed descriotio here
+contactInfo: |
+  You can reach out to me via email `contactemail[at]gmail[dot]com`
+showSocialIcons: true # or 'false'
+```
 
-          And here is the another entry with
-          additional lines.
-          - abc
-          - xyz
+Create  `timeline.yaml` sample file in `data` dir
+
+```yaml
+- year: "2021"
+  events:
+  - |
+    ### Experience
+    Write Something!
+- year: "2022"
+  events:
+  - |
+    #### Achivement
+    `tag1` `tag2` `tag3`
+
+    This is the first multi-line text entry.
+    It spans multiple lines and supports markdown
+
+    🔗[link-text](https://curiousone.in)
+
+  - |
+    #### Another Achivement
+
+    And here is the another entry with
+    additional lines.
+    - abc
+    - xyz
 ```
 
 ## [Pagespeed Insights](https://pagespeed.web.dev/report?url=https://curiousone.in) 👀
