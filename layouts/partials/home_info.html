@@ -17,10 +17,10 @@
         {{- if .showTags -}}
         {{ .tagsTitle | markdownify }}
         <div class="post-tags">
-            {{range $name, $taxonomy := site.Taxonomies.tags}} {{ $cnt := .Count }}
-                {{ with $.Site.GetPage (printf "/tags/%s" $name) }}
+            {{range site.Taxonomies.tags.ByCount}} {{ $cnt := .Count }}
+                {{ with .Page }}
                 <div>
-                    <a href={{ .RelPermalink }} title="All blogs with tag {{$name}}">#{{$name}}<sup>{{$cnt}}</sup></a>
+                    <a href={{ .RelPermalink }} title="All blogs with tag {{lower .Title}}">#{{lower .Title}}<sup>{{$cnt}}</sup></a>
                 </div>
                 {{end}}
             {{end}}

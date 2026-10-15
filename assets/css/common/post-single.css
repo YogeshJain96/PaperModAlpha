@@ -424,3 +424,13 @@ img.in-text {
     display: inline;
     margin: auto;
 }
+
+.home-info .post-tags {
+    gap: 6px;
+}
+
+.home-info .post-tags a {
+    padding: 0 8px;
+    font-size: 12px;
+    line-height: 24px;
+}
