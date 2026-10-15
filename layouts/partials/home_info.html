@@ -1,4 +1,4 @@
-{{- with site.Data.home }}
+{{- with hugo.Data.home }}
 <article class="first-entry home-info">
     <header class="entry-header">
         <h1>{{- if .showWaveIcon -}}<span class="wave">👋</span>&nbsp;{{- end -}} {{ .Title | markdownify }}</h1>

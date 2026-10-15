@@ -13,7 +13,7 @@
     partial "anchored_headings.html" .Content -}} {{- else }}{{ .Content }}{{
     end }} {{- end }}
     <div class="timeline">
-      {{- range $index, $element := site.Data.timeline }}
+      {{- range $index, $element := hugo.Data.timeline }}
       {{ $autoAlign:= cond (eq (mod $index 2) 0) "right" "left" }}
       <div class="timeline-text-wrapper timeline-{{ $autoAlign }}">
         <h3>{{ $element.year }}</h3>

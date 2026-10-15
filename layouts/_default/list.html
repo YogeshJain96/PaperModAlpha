@@ -51,7 +51,7 @@
 
 {{- $paginator := .Paginate $pages }}
 
-{{- if and .IsHome site.Data.home (eq $paginator.PageNumber 1) }}
+{{- if and .IsHome hugo.Data.home (eq $paginator.PageNumber 1) }}
 {{- partial "home_info.html" . }}
 {{- end }}
 
@@ -60,7 +60,7 @@
 
 {{- $class := "post-entry" }}
 
-{{- $user_preferred := or site.Params.disableSpecial1stPost site.Data.home }}
+{{- $user_preferred := or site.Params.disableSpecial1stPost hugo.Data.home }}
 {{- if (and $.IsHome (eq $paginator.PageNumber 1) (eq $index 0) (not $user_preferred)) }}
 {{- $class = "first-entry" }}
 {{- else if $term }}
